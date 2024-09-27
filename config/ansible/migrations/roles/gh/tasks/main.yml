@@ -1,0 +1,20 @@
+---
+- name: Looking for
+  ansible.builtin.debug:
+    msg: "Looking to fetch {{ version }}"
+- name: Check go version
+  ansible.builtin.command: gh version
+  register: go_register
+  ignore_errors: true
+  # failed_when: go_register.rc != 0 or "{{ version }} not in go_register.stdout"
+  failed_when: go_register.rc != 0 or go_register.stdout.find(version)==-1
+- name: Fetch
+  when: go_register.failed
+  ansible.builtin.get_url:
+    url: https://github.com/cli/cli/releases/download/v{{ version }}/gh_{{ version }}_linux_amd64.deb 
+    dest: /tmp
+- name: Install deb
+  when: go_register.failed
+  ansible.builtin.apt:
+        deb: /tmp/gh_{{ version }}_linux_amd64.deb
+  become: true

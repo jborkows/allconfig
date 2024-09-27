@@ -1,0 +1,76 @@
+---
+- name: Run tasks on localhost
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Print a message
+      ansible.builtin.debug:
+        msg: "Hello, localhost!"
+- name: Fetch hostname
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: Print hostname
+      ansible.builtin.debug:
+        var: ansible_hostname
+- name: Ask for sudo
+  hosts: localhost
+  become: true
+  become_method: ansible.builtin.sudo
+  vars_prompt:
+    - name: ansible_become_password
+      prompt: "Enter your password for sudo:"
+      private: true
+- name: Update
+  hosts: localhost
+  become: true
+  roles:
+    - upgrade
+- name: Golang
+  hosts: localhost
+  roles:
+    - role: golang
+      tags:
+        - golang
+- name: Kitty
+  hosts: localhost
+  roles:
+    - role: kitty
+      tags:
+        - kitty
+
+- name: Node
+  hosts: localhost
+  roles:
+    - role: node
+      tags:
+        - node
+
+- name: gh
+  hosts: localhost
+  roles:
+    - role: gh
+      tags:
+        - gh
+        - github
+- name: Applications
+  hosts: localhost
+  roles:
+    - rust
+    - firebase
+    - nvim
+    - role: glow
+      tags:
+        - glow
+- name: Properties
+  hosts: localhost
+  become: false
+  roles:
+    - upgradeproperties
+
+- name: Bash customization
+  hosts: localhost
+  roles:
+    - bashcustomization
+  tags:
+    - bash

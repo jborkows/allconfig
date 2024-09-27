@@ -1,0 +1,43 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+- name: Cleanup
+  ansible.builtin.apt:
+    autoclean: yes
+    autoremove: yes
+- name: Upgrade packages
+  apt:
+    upgrade: dist
+- name: Install 
+  ansible.builtin.apt:
+    name:
+    - cowsay
+    - python3
+    - python3.10-venv
+    - git
+    - tar
+    - jq
+    - bat  
+    - xclip
+    - sqlite3
+    - libfuse2
+    - wmctrl
+    - libsqlite3-dev
+    - lolcat
+    - lynis
+    - auditd
+    - debsums
+    - obs-studio 
+    - ffmpeg 
+    - pipewire
+    - stow
+    # - xmllint
+- name: Snaps 
+  ansible.builtin.command: snap refresh
+- name: Install Snaps yq
+  ansible.builtin.command: snap install yq 
+- name: Install Snaps gh
+  ansible.builtin.command: snap install gh
+- name: Install Snaps glow
+  ansible.builtin.command: snap install glow

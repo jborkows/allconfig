@@ -1,0 +1,4 @@
+---
+fzf_options: --preview 'batcat -n --color=always {}' --bind 'f1:toggle-preview' --preview-window hidden --multi
+fzf_command: 'rg --files --hidden --follow --glob "!.git/*" --glob "!.gitkeep"'
+

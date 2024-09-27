@@ -1,0 +1,13 @@
+---
+- name: Fetch fzf
+  ansible.builtin.command: git clone --depth 1 https://github.com/junegunn/fzf.git 
+  ignore_errors: true
+- name: Update fzf
+  ansible.builtin.command:  git pull
+  args:
+    chdir: fzf
+- name: Install fzf
+  ansible.builtin.command: ./fzf/install --all
+  set_fact:
+      env_variable_defined: "{{'FZF_DEFAULT_OPTS' in lookup('env', 'HOST_ENV')}}"
+      env_variable_value: "lookup('env', 'HOST_ENV')"

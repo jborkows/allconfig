@@ -1,0 +1,22 @@
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' 
+}
+
+
+set_prompt() {
+    local last_exit_status="$?" 
+    local red="\[\033[01;31m\]"
+    local green="\[\033[01;32m\]"
+    local orange="\[\033[38;2;255;165;0m\]"
+    local reset="\[\033[00m\]"
+    local directory_color="\[\033[1;94m\]"
+    local prompt_symbol="$>"
+    if [ $last_exit_status -eq 0 ]; then
+        PS1="${directory_color}\w${orange}$(parse_git_branch)\n${prompt_symbol} ${reset}"
+    else
+        PS1="${red}\w${orange}$(parse_git_branch)\n${red}${prompt_symbol} ${reset}"
+    fi
+}
+PROMPT_COMMAND=set_prompt
+
+

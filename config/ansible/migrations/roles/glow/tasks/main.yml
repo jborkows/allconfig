@@ -1,0 +1,19 @@
+---
+- name: Looking for
+  ansible.builtin.debug:
+    msg: "Looking to fetch {{ glowversion }}"
+- name: Check glow version
+  ansible.builtin.command: glow --version
+  register: glow_register
+  ignore_errors: true
+  failed_when: glow_register.rc != 0 or glow_register.stdout.find(glowversion)==-1
+- name: Fetch
+  when: glow_register.failed
+  ansible.builtin.get_url:
+    url: https://github.com/charmbracelet/glow/releases/download/v{{glowversion}}/glow_Linux_x86_64.tar.gz
+    dest: /tmp/glow-{{glowversion}}.tar.gz
+- name: Install new
+  when: glow_register.failed
+  ansible.builtin.unarchive:
+    src:  /tmp/glow-{{glowversion}}.tar.gz
+    dest: ~/programs

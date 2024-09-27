@@ -1,0 +1,38 @@
+---
+- name: Looking for
+  ansible.builtin.debug:
+    msg: "Looking to fetch {{ goversion }}"
+- name: Check go version
+  ansible.builtin.command: go version
+  register: go_register
+  ignore_errors: true
+  # failed_when: go_register.rc != 0 or "{{ goversion }} not in go_register.stdout"
+  failed_when: go_register.rc != 0 or go_register.stdout.find(goversion)==-1
+- name: Fetch
+  when: go_register.failed
+  ansible.builtin.get_url:
+    url: https://go.dev/dl/go{{ goversion }}.linux-amd64.tar.gz
+    dest: /tmp
+- name: Clean old
+  when: go_register.failed
+  become: true
+  ansible.builtin.command: rm -rf /usr/local/go
+- name: Install new
+  when: go_register.failed
+  become: true
+  ansible.builtin.command: tar -C /usr/local -xzf /tmp/go{{goversion}}.linux-amd64.tar.gz
+- name: Check if PATH contains the path
+  command: echo $PATH
+  register: path_output
+- name: Update PATH if the path is not present
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc  # Path to the shell configuration file (e.g., ~/.bashrc)
+    line: 'export PATH="$PATH:/usr/local/go/bin"'
+    insertafter: EOF
+    state: present
+    create: yes
+  when: "'/usr/local/go/bin' not in path_output.stdout"
+- name: Source the shell configuration file
+  ansible.builtin.shell: |
+    source ~/.bashrc
+    echo "Changes to ~/.bashrc sourced"
