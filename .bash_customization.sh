@@ -6,6 +6,8 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+HISTTIMEFORMAT="%F %T "
+HISTCONTROL=ignoredups:erasedups
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -23,8 +25,6 @@ fi
 export FZF_CTRL_T_OPTS="--preview 'batcat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 
-# Setup fzf
-# ---------
 if [[ ! "$PATH" == */$HOME/.config/ansible/migrations/fzf/bin* ]]; then
   PATH="${PATH:+${PATH}:}/$HOME/.config/ansible/migrations/fzf/bin"
 fi
@@ -60,3 +60,11 @@ set_prompt() {
 }
 PROMPT_COMMAND=set_prompt
 
+if [ -n "$TMUX" ]; then
+    # Get the window name, replace spaces with underscores for filename safety
+    WINDOW_NAME=$(tmux display-message -p "#W" | tr ' ' '_')
+    HISTFILE=~/.bash_history_tmux_$(tmux display-message -p "#S")_"$WINDOW_NAME"
+fi
+
+# Save and reload the history after each command
+PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
