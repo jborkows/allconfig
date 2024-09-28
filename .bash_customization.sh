@@ -60,10 +60,11 @@ set_prompt() {
 }
 PROMPT_COMMAND=set_prompt
 
+mkdir -p $HOME/.bashhistories
 if [ -n "$TMUX" ]; then
     # Get the window name, replace spaces with underscores for filename safety
     WINDOW_NAME=$(tmux display-message -p "#W" | tr ' ' '_')
-    HISTFILE=~/.bash_history_tmux_$(tmux display-message -p "#S")_"$WINDOW_NAME"
+    HISTFILE=~/.bashhistories/tmux_$(tmux display-message -p "#S")_"$WINDOW_NAME"
 fi
 
 # Save and reload the history after each command
