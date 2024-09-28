@@ -1,6 +1,8 @@
 SHELL := /bin/bash
 .PHONY: refresh tmux-refresh reopen
 
+prepare:
+	@sudo apt-get install stow curl ansible
 refresh:
 	@stow --target=$(HOME) .
 	@echo "Sourcing .bashrc"
