@@ -56,10 +56,26 @@ vim.opt.inccommand = 'split'
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
+local function ensure_spell_files()
+  local spell_dir = vim.fn.stdpath 'data' .. '/site/spell'
+  local pl_spl = spell_dir .. '/pl.utf-8.spl'
+
+  if vim.fn.isdirectory(spell_dir) == 0 then
+    vim.fn.mkdir(spell_dir, 'p')
+  end
+
+  if vim.fn.filereadable(pl_spl) == 0 then
+    vim.fn.system { 'wget', '--no-check-certificate', 'https://ftp.vim.org/vim/runtime/spell/pl.utf-8.spl', '-P', spell_dir }
+  end
+end
+
+-- Call the function to ensure the spell files are installed
+ensure_spell_files()
+
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 vim.opt.termguicolors = true
 vim.opt.spell = true
-vim.opt.spelllang = 'en_us'
+vim.opt.spelllang = 'en_us,pl'
 
 -- vim: ts=2 sts=2 sw=2 et
