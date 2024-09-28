@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-.PHONY: refresh tmux-refresh
+.PHONY: refresh tmux-refresh reopen
 
 refresh:
 	@stow --target=$(HOME) .
@@ -7,3 +7,5 @@ refresh:
 	@source $(HOME)/.bashrc || true
 tmux-refresh:
 	@tmux source-file .config/tmux/tmux.conf
+reopen:
+	@bash restoresession.sh

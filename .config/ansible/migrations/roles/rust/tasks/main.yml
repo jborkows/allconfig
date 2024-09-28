@@ -17,30 +17,4 @@
   ansible.builtin.shell: rustup update
 - name: Install stylua
   ansible.builtin.shell: cargo install stylua
-- name: Check if ripgrep is installed
-  ansible.builtin.command: which rg
-  register: ripgrep_exists
-  ignore_errors: true
-- name: Install ripgrep
-  ansible.builtin.shell: cargo install ripgrep
-  when: ripgrep_exists is failed
-- name: ripgrep config
-  copy:
-     dest: ~/.ripgreprc
-     content: |
-      --hidden
-      --glob=!.git/*
-      --glob=!.gitkeep
-
-- name: Check if environment variable is defined and has the desired value
-  set_fact:
-      ripgrep_config_defined: "{{'RIPGREP_CONFIG_PATH' in lookup('env', 'HOST_ENV')}}"
-- name: Add line in bashrc if needed
-  lineinfile:
-      dest: "~/.bashrc"
-      line: "export RIPGREP_CONFIG_PATH=~/.ripgreprc"
-      insertafter: EOF
-      state: present
-      create: yes
-  when: not ripgrep_config_defined 
 

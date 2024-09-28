@@ -1,14 +1,19 @@
 ---
- - name: Install/Update kitty 
-   shell: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
- - name: Print installation result
-   debug:
-     msg: "{{ kitty_install.stdout_lines }}"
-   when: kitty_install is defined and kitty_install.changed
+ - name: Download kitty installer script
+   ansible.builtin.get_url:
+     url: https://sw.kovidgoyal.net/kitty/installer.sh
+     dest: /tmp/kitty_installer.sh
+     mode: '0755'
+ - name: Execute kitty installer script
+   ansible.builtin.shell: /tmp/kitty_installer.sh launch=n
+ - name: Check Kitty version
+   command: kitty -v
+   register: kitty_version
+   ignore_errors: true
+   changed_when: false
  - name: Print Kitty version
    debug:
      msg: "Kitty is installed. Version: {{ kitty_version.stdout }}"
-   when: kitty_version.rc == 0 or (kitty_install is defined and kitty_install.changed)
  - name: Check if kitty.desktop exists
    stat:
      path: "~/.local/share/applications/kitty.desktop"

@@ -1,4 +1,4 @@
 #!/bin/bash
-echo "Starting tmux..."	
+cat $HOME/.scripts/tmuxstart.logo|lolcat
 source "$HOME/.bashrc"
 exec bash
