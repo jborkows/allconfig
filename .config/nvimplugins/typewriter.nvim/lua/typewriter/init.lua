@@ -29,17 +29,19 @@ local play_sound = function(sound)
 	})
 end
 
+local last_job_time = 0 -- Track the last job time
+local cooldown = 200
 local counter = 1
 local play_character = function()
-	-- if in_progress then
-	-- 	return
-	-- end
-	-- counter = counter + 1
-	in_progress = true
+	local current_time = vim.loop.now() -- Get the current time in milliseconds
+	local time_since_last_job = current_time - last_job_time
+
+	if time_since_last_job < cooldown then
+		return
+	end
+	last_job_time = current_time
 	vim.fn.jobstart("play " .. clicks[counter % table.maxn(clicks) + 1] .. " >/dev/null 2>&1", {
-		on_exit = function()
-			in_progress = false
-		end,
+		on_exit = function() end,
 	})
 end
 
