@@ -19,13 +19,18 @@ local clicks = {
 local carriage = sound_dir .. "/carriage1.wav"
 local ding = sound_dir .. "/ding1.wav"
 
-local in_progress = false
-local play_sound = function(sound)
-	in_progress = true
+local enter_last_job_time = 0 -- Track the last job time
+local enter_cooldown = 500
+local play_enter = function(sound)
+	local current_time = vim.loop.now() -- Get the current time in milliseconds
+	local time_enter_last_job_time = current_time - enter_last_job_time
+
+	if time_enter_last_job_time < enter_cooldown then
+		return
+	end
+	enter_last_job_time = current_time
 	vim.fn.jobstart("play " .. sound .. " >/dev/null 2>&1", {
-		on_exit = function(_, code, _)
-			in_progress = false
-		end,
+		on_exit = function() end,
 	})
 end
 
@@ -50,7 +55,7 @@ local group = vim.api.nvim_create_augroup("typewriter.nvim", { clear = true })
 local catchEnter = function()
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true)
 	if typewriter_enabled then
-		play_sound(carriage)
+		play_enter(carriage)
 	end
 end
 vim.keymap.set("i", "<CR>", catchEnter, { silent = true, noremap = true })
