@@ -14,7 +14,6 @@ selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
     
 function prepare_session(   ) {
-echo "Preparing session $1"
 TMUX_SESSION_NAME=$1	
 DIRECTORY=$2
 while ! tmux has-session -t $TMUX_SESSION_NAME 2>/dev/null; do
@@ -33,7 +32,7 @@ if [ $? != 0 ]; then
 	tmux new-window -t $TMUX_SESSION_NAME -n "commands"  -c $DIRECTORY
 fi
 	
-tmux send-keys -t $TMUX_SESSION_NAME:commands "cowsay -f dragon I am ready" C-m
+tmux send-keys -t $TMUX_SESSION_NAME:commands "cowsay -f dragon I am ready | lolcat" C-m
 tmux select-window -t $TMUX_SESSION_NAME:nvim
 tmux list-windows -t $TMUX_SESSION_NAME | grep -v nvim | grep -v commands | grep bash | cut -f1 -d":" | xargs -I {} tmux kill-window -t $TMUX_SESSION_NAME:{}
 }
