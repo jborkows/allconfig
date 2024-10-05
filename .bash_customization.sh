@@ -69,3 +69,5 @@ fi
 
 # Save and reload the history after each command
 PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
+eval "$(zoxide init bash)"
+export EDITOR=nvim

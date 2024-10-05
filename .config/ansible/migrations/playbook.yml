@@ -39,6 +39,12 @@
       tags:
         - kitty
 
+- name: Zoxide
+  hosts: localhost
+  roles:
+    - role: zoxide  
+      tags:
+        - zoxide
 - name: Node
   hosts: localhost
   roles:
@@ -58,10 +64,17 @@
   roles:
     - rust
     - firebase
-    - nvim
+    - yazi
     - role: glow
       tags:
         - glow
+- name: Applications needing sudo
+  hosts: localhost
+  become: true
+  roles:
+    - role: nvim
+      tags:
+        - nvim
 - name: Properties
   hosts: localhost
   become: false
