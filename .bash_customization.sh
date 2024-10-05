@@ -35,7 +35,7 @@ export FZF_DEFAULT_OPTS="--preview 'batcat -n --color=always {}' --bind 'f1:togg
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob "!.git/*""
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob "!.git/*" --glob "!.gitkeep""
-export PATH="$HOME/programs:$PATH"
+export PATH="$HOME/programs:$PATH:$HOME/.scripts"
 
 export SSH_AUTH_SOCK=~/.1password/agent.sock
 
