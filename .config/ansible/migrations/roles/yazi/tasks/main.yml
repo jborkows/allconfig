@@ -1,3 +1,18 @@
 ---
  - name: Install yazi from cargo
    ansible.builtin.shell: cargo install --locked yazi-fm yazi-cli
+
+ - name: hide preview
+   ansible.builtin.shell:  ya pack -a yazi-rs/plugins:max-preview
+   ignore_errors: true
+
+ - name: yazi flavor
+   ansible.builtin.shell:  ya pack -a yazi-rs/flavors:catppuccin-mocha  
+   ignore_errors: true
+
+ - name: yazi full bolder
+   ansible.builtin.shell: ya pack -a yazi-rs/plugins:full-border 
+   ignore_errors: true
+
+ - name: yazi upgdate
+   ansible.builtin.shell: ya pack -u

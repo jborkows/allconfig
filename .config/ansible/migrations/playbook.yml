@@ -64,7 +64,9 @@
   roles:
     - rust
     - firebase
-    - yazi
+    - role: yazi
+      tags:
+        - yazi
     - role: glow
       tags:
         - glow
