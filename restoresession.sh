@@ -3,6 +3,9 @@ TMUX_SESSION_NAME="dotfiles"
 tmux has-session -t $TMUX_SESSION_NAME 2>/dev/null
 if [ $? != 0 ]; then
 	tmux new-session -s $TMUX_SESSION_NAME -n "nvim" 
+fi
+tmux has-window -t $TMUX_SESSION_NAME:commands 2>/dev/null
+if [ $? != 0 ]; then
 	tmux new-window -t $TMUX_SESSION_NAME -n "commands" 
 fi
 	
