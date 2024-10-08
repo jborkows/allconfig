@@ -33,6 +33,7 @@
     - pipewire
     - stow
     - sox
+    - fonts-noto-color-emoji
     # - xmllint
 - name: Snaps 
   ansible.builtin.command: snap refresh
