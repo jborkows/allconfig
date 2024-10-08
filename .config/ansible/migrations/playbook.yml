@@ -89,3 +89,11 @@
     - bashcustomization
   tags:
     - bash
+
+- name: Docker
+  hosts: localhost
+  become: true
+  roles:
+    - role: docker  
+      tags:
+        - docker
