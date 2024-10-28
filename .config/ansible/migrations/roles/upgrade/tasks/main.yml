@@ -34,6 +34,7 @@
     - stow
     - sox
     - fonts-noto-color-emoji
+    - clamav
     # - xmllint
 - name: Snaps 
   ansible.builtin.command: snap refresh
