@@ -1,5 +1,5 @@
 [plugin]
-deps = [{ use = "yazi-rs/plugins:hide-preview", rev = "35100e7" }, { use = "yazi-rs/plugins:max-preview", rev = "35100e7" }, { use = "yazi-rs/plugins:full-border", rev = "35100e7" }]
+deps = [{ use = "yazi-rs/plugins:hide-preview", rev = "ad52adf" }, { use = "yazi-rs/plugins:max-preview", rev = "ad52adf" }, { use = "yazi-rs/plugins:full-border", rev = "ad52adf" }]
 
 [flavor]
-deps = [{ use = "yazi-rs/flavors:catppuccin-mocha", rev = "b081fa9" }]
+deps = [{ use = "yazi-rs/flavors:catppuccin-mocha", rev = "8465c93" }]
