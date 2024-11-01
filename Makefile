@@ -12,3 +12,5 @@ tmux-refresh:
 	@tmux source-file .config/tmux/tmux.conf
 reopen:
 	@bash restoresession.sh
+scan:
+	@clamscan --recursive /  --quiet
