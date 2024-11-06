@@ -69,3 +69,6 @@ fi
 PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 eval "$(zoxide init bash)"
 export EDITOR=nvim
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+source <(carapace _carapace)
+eval "$(carapace setup bash)"

@@ -19,6 +19,8 @@ DIRECTORY=$2
 while ! tmux has-session -t $TMUX_SESSION_NAME 2>/dev/null; do
         sleep 0.1
 done
+
+sleep 0.1
 tmux has-window -t $TMUX_SESSION_NAME:nvim 2>/dev/null
 if [ $? != 0 ]; then
 	tmux new-window -t $TMUX_SESSION_NAME -n "nvim" -c $DIRECTORY

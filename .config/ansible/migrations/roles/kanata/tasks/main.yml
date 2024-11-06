@@ -1,0 +1,23 @@
+---
+- name: Download Kanata release
+  ansible.builtin.get_url:
+    url: https://github.com/jtroo/kanata/releases/download/v{{kanata_version}}/kanata
+    dest: "/tmp/kanata"
+    mode: '0644'
+
+- name: Copy Kanata
+  ansible.builtin.copy:
+    src: "/tmp/kanata"
+    dest: "{{ ansible_env.HOME }}/.local/bin/kanata"
+
+- name: Make Kanata executable
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/bin/kanata"
+    mode: '0755'
+    state: file
+
+- name: Clean up temporary files
+  ansible.builtin.file:
+    path: "/tmp/kanata-linux"
+    state: absent
+

@@ -97,3 +97,19 @@
     - role: docker  
       tags:
         - docker
+
+- name: Carapace
+  hosts: localhost
+  become: true
+  roles:
+    - role: carapace
+      tags:
+        - carapace
+
+- name: kanata
+  hosts: localhost
+  become: false
+  roles:
+    - role: kanata
+      tags:
+        - kanata

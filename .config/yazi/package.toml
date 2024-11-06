@@ -2,4 +2,4 @@
 deps = [{ use = "yazi-rs/plugins:hide-preview", rev = "ad52adf" }, { use = "yazi-rs/plugins:max-preview", rev = "ad52adf" }, { use = "yazi-rs/plugins:full-border", rev = "ad52adf" }]
 
 [flavor]
-deps = [{ use = "yazi-rs/flavors:catppuccin-mocha", rev = "8465c93" }]
+deps = [{ use = "yazi-rs/flavors:catppuccin-mocha", rev = "d504f70" }]

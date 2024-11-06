@@ -1,0 +1,22 @@
+---
+- name: Ensure Fury.io repository file exists
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/fury.list
+    state: touch
+
+- name: Add Fury.io repository to sources list
+  ansible.builtin.lineinfile:
+    path: /etc/apt/sources.list.d/fury.list
+    line: "deb [trusted=yes] https://apt.fury.io/rsteube/ /"
+    create: yes
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600  # Only update if cache is older than 1 hour
+
+- name: Install carapace-bin
+  ansible.builtin.apt:
+    name: carapace-bin
+    state: present
+
