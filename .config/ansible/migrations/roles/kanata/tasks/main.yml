@@ -4,7 +4,9 @@
     url: https://github.com/jtroo/kanata/releases/download/v{{kanata_version}}/kanata
     dest: "/tmp/kanata"
     mode: '0644'
-
+- name: Echo home
+  ansible.builtin.debug:
+    msg: "{{ ansible_env.HOME }}"
 - name: Copy Kanata
   ansible.builtin.copy:
     src: "/tmp/kanata"
@@ -21,3 +23,26 @@
     path: "/tmp/kanata-linux"
     state: absent
 
+- name: Create the systemd service file
+  become: yes
+  ansible.builtin.template:
+        src: templates/kanata.service.j2
+        dest: /etc/systemd/system/kanata.service
+        mode: '0644'
+
+- name: Reload systemd daemon
+  become: yes
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: Enable the custom service
+  become: yes
+  ansible.builtin.systemd:
+    name: kanata
+    enabled: yes
+
+- name: Start the custom service
+  become: yes
+  ansible.builtin.systemd:
+    name: kanata
+    state: started

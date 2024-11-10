@@ -1,0 +1,15 @@
+[Unit]
+Description=katana keyboard rewriter
+After=network.target
+
+[Service]
+Environment=DISPLAY=:0
+Environment=HOME=/home/{{ ansible_env.USER }}
+Type=simple
+ExecStart=/home/{{ ansible_env.USER }}/.local/bin/kanata -c /home/{{ ansible_env.USER }}/.config/kanata/kanata.kdb
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
+
