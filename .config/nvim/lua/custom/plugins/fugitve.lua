@@ -7,6 +7,7 @@ return {
       vim.keymap.set('n', 'gl', '<cmd>diffget //2<CR>')
       vim.keymap.set('n', '<M-g>', '<cmd>0GcLog<CR>', { desc = 'populate history to quick fix' })
       vim.keymap.set('n', '<M-d>', '<cmd>Gdiffsplit<CR>')
+      vim.keymap.set('n', '<C-S-K>', '<cmd>Git Push<CR>')
     end,
   },
 }
