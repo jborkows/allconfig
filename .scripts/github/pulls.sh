@@ -12,5 +12,5 @@ Author \(.author.login)
 \(.url)
 Comments 
   \(if .comments | length > 0 then (.comments[] | "\(.author.login) \(.body)") else "No comments" end)"   '\'''  \
-        | cut -f2 -d$'\t'  |  sed 's/\s+//' | base64 --decode| jq -r '.url' |   xargs -I {} firefox {} ;
+        | cut -f2 -d$'\t'  |  sed 's/\s+//' | base64 --decode| jq -r '.url' |   xargs -I {} brave-browser {} ;
 
