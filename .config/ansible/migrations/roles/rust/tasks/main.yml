@@ -17,4 +17,6 @@
   ansible.builtin.shell: rustup update
 - name: Install stylua
   ansible.builtin.shell: cargo install stylua
+- name: Install ripgrep
+  ansible.builtin.shell: cargo install ripgrep
 

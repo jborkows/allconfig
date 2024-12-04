@@ -36,6 +36,7 @@
     - clamav
     - tmux
     - npm
+    - ntfs-3g
     # - xmllint
 - name: Ensure tmux plugin manager directory exists
   ansible.builtin.file:

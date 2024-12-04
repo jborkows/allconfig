@@ -1,5 +1,5 @@
 ---
-- name: Run tasks on localhost
+- name: Run tasks on localhostpla
   hosts: localhost
   gather_facts: false
   tasks:
@@ -28,6 +28,7 @@
     - upgrade
     - brave
     - kubectl
+    - node
 - name: Golang
   hosts: localhost
   roles:

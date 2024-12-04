@@ -21,8 +21,8 @@
     path: /tmp/nvim-linux64.tar.gz
     state: absent
 
-- name: Update packer
-  ansible.builtin.command: nvim --headless "+Lazy! sync" +qa
-- name: Update mason
-  ansible.builtin.command: nvim --headless -c 'MasonUpdate' -c 'q'
+# - name: Update packer
+#   ansible.builtin.command: nvim --headless "+Lazy! sync" +qa
+# - name: Update mason
+#   ansible.builtin.command: nvim --headless -c 'MasonUpdate' -c 'q'
 
