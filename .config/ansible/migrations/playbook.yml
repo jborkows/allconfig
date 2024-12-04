@@ -26,6 +26,8 @@
   become: true
   roles:
     - upgrade
+    - brave
+    - kubectl
 - name: Golang
   hosts: localhost
   roles:
@@ -45,13 +47,6 @@
     - role: zoxide  
       tags:
         - zoxide
-- name: Node
-  hosts: localhost
-  roles:
-    - role: node
-      tags:
-        - node
-
 - name: gh
   hosts: localhost
   roles:
@@ -63,7 +58,6 @@
   hosts: localhost
   roles:
     - rust
-    - firebase
     - role: yazi
       tags:
         - yazi

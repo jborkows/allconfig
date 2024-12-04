@@ -1,31 +1,28 @@
 ---
+- name: Download the latest Neovim release
+  ansible.builtin.get_url:
+    url: https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+    dest: /tmp/nvim-linux64.tar.gz
+    mode: '0644'
 
-- name: Install Snaps neovim
-  ansible.builtin.command: snap install nvim --classic
+- name: Remove existing Neovim installation
+  ansible.builtin.file:
+    path: /opt/nvim
+    state: absent
 
-- name: Update lazy
+- name: Extract Neovim to /opt
+  ansible.builtin.unarchive:
+    src: /tmp/nvim-linux64.tar.gz
+    dest: /opt
+    remote_src: yes
+
+- name: Clean up the downloaded tarball
+  ansible.builtin.file:
+    path: /tmp/nvim-linux64.tar.gz
+    state: absent
+
+- name: Update packer
   ansible.builtin.command: nvim --headless "+Lazy! sync" +qa
 - name: Update mason
   ansible.builtin.command: nvim --headless -c 'MasonUpdate' -c 'q'
-# - name: Fetch recent
-#   ansible.builtin.get_url:
-#     url: https://github.com/neovim/neovim/releases/download/stable/nvim.appimage 
-#     dest: ~/programs/nvim
-#     mode: '0755'
-#     force: 'yes'
-# - name: Check if PATH contains the path
-#   command: echo $PATH
-#   register: path_output
-# - name: Update PATH if the path is not present
-#   ansible.builtin.lineinfile:
-#     path: ~/.bashrc  # Path to the shell configuration file (e.g., ~/.bashrc)
-#     line: 'export PATH="$PATH:~/programs"'
-#     insertafter: EOF
-#     state: present
-#     create: yes
-#   when: "'~/programs' not in path_output.stdout"
-# - name: Update packer
-#   ansible.builtin.command: ~/programs/nvim --headless "+Lazy! sync" +qa
-# - name: Update mason
-#   ansible.builtin.command: ~/programs/nvim --headless -c 'MasonUpdate' -c 'q'
-#
+

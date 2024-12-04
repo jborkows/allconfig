@@ -1,0 +1,19 @@
+---
+- name: Get the latest stable version of kubectl
+  ansible.builtin.shell: |
+    curl -L -s https://dl.k8s.io/release/stable.txt
+  register: kubectl_version
+  changed_when: false
+
+- name: Download kubectl binary
+  ansible.builtin.get_url:
+    url: "https://dl.k8s.io/release/{{ kubectl_version.stdout }}/bin/linux/amd64/kubectl"
+    dest: /usr/local/bin/kubectl
+    mode: '0755'
+
+- name: Ensure kubectl is executable
+  ansible.builtin.file:
+    path: /usr/local/bin/kubectl
+    mode: '0755'
+    state: file
+
