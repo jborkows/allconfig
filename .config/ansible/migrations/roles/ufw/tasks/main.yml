@@ -1,0 +1,32 @@
+---
+# tasks/main.yml
+- name: Ensure UFW is installed
+  ansible.builtin.package:
+    name: ufw
+    state: present
+
+- name: Allow SSH
+  ansible.builtin.ufw:
+    rule: allow
+    port: "{{ ufw_allowed_ports.ssh }}"
+    proto: tcp
+
+- name: Allow HTTP
+  ansible.builtin.ufw:
+    rule: allow
+    port: "{{ ufw_allowed_ports.http }}"
+    proto: tcp
+
+- name: Allow HTTPS
+  ansible.builtin.ufw:
+    rule: allow
+    port: "{{ ufw_allowed_ports.https }}"
+    proto: tcp
+
+- name: Enable UFW
+  ansible.builtin.command: ufw --force enable
+  when: ufw_enable
+
+- name: Reload UFW
+  ansible.builtin.command: ufw reload
+  when: ufw_enable

@@ -1,0 +1,10 @@
+---
+# Default ports to allow
+ufw_allowed_ports:
+  ssh: 22
+  http: 80
+  https: 443
+
+# Whether to enable UFW
+ufw_enable: true
+

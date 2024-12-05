@@ -108,3 +108,11 @@
     - role: kanata
       tags:
         - kanata
+  
+- name: ufw
+  hosts: localhost
+  become: true
+  roles:
+    - role: ufw
+      tags:
+        - ufw
