@@ -29,6 +29,19 @@
     - brave
     - kubectl
     - node
+- name: Pandoc
+  hosts: localhost
+  roles:
+    - role: pandoc
+      tags:
+        - pandoc
+- name: Signal
+  become: true
+  hosts: localhost
+  roles:
+    - role: signal
+      tags:
+        - signal
 - name: Golang
   hosts: localhost
   roles:

@@ -1,0 +1,20 @@
+---
+- name: Looking for
+  ansible.builtin.debug:
+    msg: "Looking to fetch {{ pandoc_version }}"
+- name: Check go version
+  ansible.builtin.command: pandoc --version
+  register: go_register
+  ignore_errors: true
+  failed_when: go_register.rc != 0 or go_register.stdout.find(pandoc_version)==-1
+- name: Fetch
+  when: go_register.failed
+  ansible.builtin.get_url:
+    url: https://github.com/jgm/pandoc/releases/download/{{pandoc_version}}/pandoc-{{pandoc_detail_version}}-amd64.deb
+    dest: /tmp/pandoc-{{pandoc_detail_version}}-amd64.deb
+- name: Install new
+  when: go_register.failed
+  become: true
+  ansible.builtin.apt:
+    deb:  "/tmp/pandoc-{{pandoc_detail_version}}-amd64.deb"
+    state: present
