@@ -21,6 +21,7 @@ M.attach = function(event)
   -- Jump to the implementation of the word under your cursor.
   --  Useful when your language has ways of declaring types without an actual implementation.
   map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+  map('<space>fi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
   -- Jump to the type of the word under your cursor.
   --  Useful when you're not sure what type a variable is and you want to see
@@ -60,7 +61,10 @@ M.attach = function(event)
   --
   -- When you move your cursor, the highlights will be cleared (the second autocommand).
   local client = vim.lsp.get_client_by_id(event.data.client_id)
-  if client and client.server_capabilities.documentHighlightProvider then
+  if not client then
+    return
+  end
+  if client.server_capabilities.documentHighlightProvider then
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
       buffer = event.buf,
       callback = vim.lsp.buf.document_highlight,
@@ -70,14 +74,15 @@ M.attach = function(event)
       buffer = event.buf,
       callback = vim.lsp.buf.clear_references,
     })
-    if client.supports_method 'textDocument/formatting' then
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        buffer = event.buf,
-        callback = function()
-          vim.lsp.buf.format { bufnr = event.buf }
-        end,
-      })
-    end
+  end
+
+  if client.supports_method 'textDocument/formatting' then
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      buffer = event.buf,
+      callback = function()
+        vim.lsp.buf.format { bufnr = event.buf, client_id = event.data.client_id }
+      end,
+    })
   end
 end
 
