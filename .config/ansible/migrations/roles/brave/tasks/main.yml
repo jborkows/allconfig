@@ -19,3 +19,6 @@
   ansible.builtin.apt:
     name: brave-browser
     state: present
+- name: Set Brave as the default browser
+  command: xdg-settings set default-web-browser brave-browser.desktop
+  register: result
