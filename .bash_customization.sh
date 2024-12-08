@@ -72,4 +72,4 @@ export EDITOR=nvim
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 source <(carapace _carapace)
 eval "$(carapace setup bash)"
-export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/opt/nvim-linux64/bin:/home/jborkows/go/bin"
