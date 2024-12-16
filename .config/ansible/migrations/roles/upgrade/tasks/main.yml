@@ -39,6 +39,7 @@
     - ntfs-3g
     - ufw
     - texlive
+    - qttools5-dev-tools
     # - xmllint
 - name: Ensure tmux plugin manager directory exists
   ansible.builtin.file:
