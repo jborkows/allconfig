@@ -105,6 +105,8 @@ require 'lazy-bootstrap'
 -- [[ Configure and install plugins ]]
 require 'lazy-plugins'
 
+require 'custom.floatterminal'
+
 local function load_project_config()
   local project_config = '.nvimrc.lua'
   -- Check if the project-specific config file exists in the current working directory

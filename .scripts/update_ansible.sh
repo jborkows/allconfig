@@ -7,5 +7,12 @@ function guiRelatedWhichFailsOnAnsibleForSomeReasons() {
 
 pushd "$HOME/.config/ansible/migrations" || exit
 ansible-playbook  playbook.yml  --extra-vars "docker_data_dir=/datadisk/dockerdir"
+
+cowsay -f dragon "Ansible playbook executed successfully"
+
 popd || exit
-guiRelatedWhichFailsOnAnsibleForSomeReasons()
+
+guiRelatedWhichFailsOnAnsibleForSomeReasons
+
+cowsay -f dragon "Script execution finished"
+

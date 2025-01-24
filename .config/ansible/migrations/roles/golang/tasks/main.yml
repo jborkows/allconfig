@@ -36,3 +36,6 @@
   ansible.builtin.shell: |
     source ~/.bashrc
     echo "Changes to ~/.bashrc sourced"
+- name: Install sqlc
+  ansible.builtin.shell: |
+    go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
