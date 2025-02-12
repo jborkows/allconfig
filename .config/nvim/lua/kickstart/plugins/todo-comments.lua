@@ -19,6 +19,25 @@ return {
         },
         -- more configuration options here
       }
+
+      -- @param {OPENED|CLOSED} state
+      local state = 'CLOSED'
+
+      local function toggleQuickfix()
+        if state == 'OPENED' then
+          vim.cmd 'cclose'
+          state = 'CLOSED'
+        else
+          local ok, result = pcall(function()
+            vim.cmd 'TodoQuickFix'
+          end)
+          if ok then
+            state = 'OPENED'
+          end
+        end
+      end
+
+      vim.keymap.set('n', 't', toggleQuickfix, { noremap = true, silent = true, desc = 'Toggle todo quickfix' })
     end,
   },
 }
