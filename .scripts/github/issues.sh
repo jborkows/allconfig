@@ -2,6 +2,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source "${DIR}/common.sh"
 export FZF_DEFAULT_OPTS="--preview 'batcat -n --color=always {}' --bind 'f1:toggle-preview' --preview-window=right:40% --ansi --reverse"
 
+source "${DIR}/tmux_aware.sh"
 header=$(echo -e "enter to open\nctrl+a to self assign\nctrl+e to edit\nF4 to add comment\nctrl+q to close")
 echo "${repo}" | xargs -I {}  gh issue list --json id,labels,state,url,milestone,createdAt,updatedAt,assignees,author,title,number --repo {} --limit 100 |
         jq -r '.[] | "\(.updatedAt) -> \(.title) \(.author.login) \(.labels)\t\(.| @base64)"' | fzf --delimiter='\t' \
