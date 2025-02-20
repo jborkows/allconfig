@@ -39,3 +39,6 @@
 - name: Install sqlc
   ansible.builtin.shell: |
     go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
+- name: Install migrate for sqlite3
+  ansible.builtin.shell: |
+   go install -tags 'sqlite3' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
