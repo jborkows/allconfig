@@ -67,3 +67,11 @@ cmp.setup {
 for _, ft_path in pairs(vim.api.nvim_get_runtime_file('lua/custom/snppets/*.lua', true)) do
   loadfile(ft_path)()
 end
+
+-- Setup up vim-dadbod
+cmp.setup.filetype({ 'sql' }, {
+  sources = {
+    { name = 'vim-dadbod-completion' },
+    { name = 'buffer' },
+  },
+})
