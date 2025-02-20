@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+
+if [[ -n "$TMUX" ]]; then 
+	export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --tmux center,50% --reverse"
+fi
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
