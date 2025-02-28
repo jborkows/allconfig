@@ -40,6 +40,7 @@
     - ufw
     - texlive
     - qttools5-dev-tools
+    - libheif-examples
     # - xmllint
 - name: Ensure tmux plugin manager directory exists
   ansible.builtin.file:
