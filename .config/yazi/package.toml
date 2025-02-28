@@ -1,19 +1,19 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:hide-preview"
-rev = "beb586a"
-hash = "55904f17e1053cfb91dacd9015a99f9d"
+rev = "5186af7"
+hash = "1e31898370b752e4faf335b762b3eeaf"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:max-preview"
-rev = "beb586a"
-hash = "15b2ff7f6563c14d5b2e93b3e9da35de"
+rev = "5186af7"
+hash = "a8025f2bb311e869069364fba01abffc"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "beb586a"
+rev = "5186af7"
 hash = "ae9e1d0c6bfd68cdebc98cc684c22b45"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "302c0d5"
-hash = "c40e434318a8ceffd01842f8dfb2390e"
+rev = "c023460"
+hash = "2ac87e1b3a61f5887472899e86535d29"
