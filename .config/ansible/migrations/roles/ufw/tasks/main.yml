@@ -23,6 +23,12 @@
     port: "{{ ufw_allowed_ports.https }}"
     proto: tcp
 
+- name: Allow cups
+  ansible.builtin.ufw:
+    rule: allow
+    port: "{{ ufw_allowed_ports.cups }}"
+    proto: tcp
+
 - name: Enable UFW
   ansible.builtin.command: ufw --force enable
   when: ufw_enable
