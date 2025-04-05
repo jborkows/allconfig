@@ -76,7 +76,7 @@ M.attach = function(event)
     })
   end
 
-  if client.supports_method 'textDocument/formatting' then
+  if client:supports_method 'textDocument/formatting' then
     vim.api.nvim_create_autocmd('BufWritePre', {
       buffer = event.buf,
       callback = function()
@@ -84,6 +84,11 @@ M.attach = function(event)
       end,
     })
   end
+
+  if client:supports_method 'textDocument/completion' then
+    vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+  end
+  vim.diagnostic.config { virtual_text = true }
 end
 
 return M
