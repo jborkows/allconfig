@@ -4,5 +4,5 @@ alias updateansible='bash ~/.scripts/update_ansible.sh'
 alias addremote='bash ~/.scripts/add_github_remote.sh'
 alias cd=z
 alias cdx=zi
-alias hl=rg --passthru 
+alias hl='rg --passthru'
 
