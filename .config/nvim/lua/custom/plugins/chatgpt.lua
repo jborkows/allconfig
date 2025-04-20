@@ -11,8 +11,7 @@ return {
         require('chatgpt').setup {
           api_key_cmd = 'op read op://private/OpenAI/credential --no-newline',
           openai_params = {
-            model = 'chatgpt-4o-latest',
-            max_tokens = 16384,
+            model = 'o4-mini-2025-04-16',
           },
         }
         initialized = true
