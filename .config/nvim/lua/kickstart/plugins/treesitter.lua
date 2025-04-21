@@ -22,6 +22,21 @@ return {
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup(opts)
 
+      local parsers = require('nvim-treesitter.parsers').get_parser_configs()
+      vim.api.nvim_create_autocmd('BufRead', {
+        pattern = '*.bashx',        -- Adjust this pattern as needed
+        callback = function()
+          vim.bo.filetype = 'bashx' -- Register custom filetype
+        end,
+      })
+      parsers.bashx = {
+        install_info = {
+          url = '~/.config/treesittergrammars/tree-sitter-bash', -- path to your patched grammar
+          files = { 'src/parser.c', 'src/scanner.c' },
+        },
+        filetype = 'bashx',
+      }
+
       -- There are additional nvim-treesitter modules that you can use to interact
       -- with nvim-treesitter. You should go explore a few and see what interests you:
       --
