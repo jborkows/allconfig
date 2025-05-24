@@ -43,6 +43,7 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'codelldb',
       },
     }
 
@@ -50,6 +51,7 @@ return {
       display_callback = function(variable)
         return '->' .. variable.value
       end,
+      virt_text_pos = 'eol',
     }
 
     -- Basic debugging keymaps, feel free to change to your liking!
