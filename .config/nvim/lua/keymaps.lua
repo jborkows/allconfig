@@ -105,4 +105,11 @@ function ToggleCopilot()
 end
 
 vim.keymap.set('n', '<leader>cp', ToggleCopilot, { desc = 'Toggle Copilot' })
+
+vim.keymap.set('n', '<leader>w', function()
+  local picked_window_id = require('window-picker').pick_window()
+  if picked_window_id then
+    vim.api.nvim_set_current_win(picked_window_id)
+  end
+end)
 -- vim: ts=2 sts=2 sw=2 et
