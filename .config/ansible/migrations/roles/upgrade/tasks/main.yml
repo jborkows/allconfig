@@ -49,6 +49,10 @@
     - clangd
     - bear
     - lldb
+    - libjemalloc-dev
+    - autoconf 
+    - libtool
+
 - name: Ensure tmux plugin manager directory exists
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
