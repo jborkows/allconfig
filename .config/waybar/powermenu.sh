@@ -1,4 +1,5 @@
-choice=$(printf "⏻ Shutdown\n Reboot\n Suspend\n Hibernate" | rofi -dmenu -p "Power Menu")
+choice=$(printf "⏻ Shutdown\n Reboot\n Suspend\n Hibernate" | rofi -dmenu -theme ~/.config/rofi/config.rasi
+ -p "Power Menu")
 
 case "$choice" in
     "⏻ Shutdown") systemctl poweroff ;;
