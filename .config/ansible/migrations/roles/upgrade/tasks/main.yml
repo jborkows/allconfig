@@ -52,6 +52,8 @@
     - libjemalloc-dev
     - autoconf 
     - libtool
+    - waybar
+    - network-manager
 
 - name: Ensure tmux plugin manager directory exists
   ansible.builtin.file:
