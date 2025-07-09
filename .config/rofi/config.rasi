@@ -7,16 +7,16 @@ configuration {
   font: "JetBrainsMono Nerd Font 14";
   background:     #1e1e2e;
   background-alt: #2e2e3e;
-  // foreground:     #cdd6f4;
   foreground:     #d2d2d0;
+
   selected:       #89b4fa;
   active:         #a6e3a1;
   urgent:         #f38ba8;
 
   border-color:   #89b4fa;
-  border:         2px;
+  border:         0px;          // Remove inner borders
   border-radius:  12px;
-  padding:        10px;
+  padding:        0px;          // Remove inner padding
   spacing:        10px;
   outline:        none;
 }
@@ -31,7 +31,7 @@ window {
 mainbox {
   background-color: @background;
   border-radius: inherit;
-  padding: 10px;
+  padding: 5px;
 }
 
 listview {
