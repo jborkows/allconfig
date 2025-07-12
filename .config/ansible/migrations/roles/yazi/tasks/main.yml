@@ -15,4 +15,4 @@
    ignore_errors: true
 
  - name: yazi upgdate
-   ansible.builtin.shell: ya pkg -u
+   ansible.builtin.shell: ya pkg upgrade

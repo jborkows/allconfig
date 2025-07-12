@@ -15,6 +15,7 @@
     "modules-right": [
         "tray",
         "idle_inhibitor",
+        "pulseaudio",
         "cpu",
         "memory",
         "battery",
