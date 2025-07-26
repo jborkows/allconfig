@@ -86,7 +86,7 @@ M.attach = function(event)
   end
 
   if client:supports_method 'textDocument/completion' then
-    vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+    vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = false })
   end
   vim.diagnostic.config {
     virtual_lines = true,
