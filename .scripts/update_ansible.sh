@@ -16,3 +16,6 @@ guiRelatedWhichFailsOnAnsibleForSomeReasons
 
 cowsay -f dragon "Script execution finished"
 
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+bash $SCRIPT_DIR/repetives/init.sh

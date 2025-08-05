@@ -14,3 +14,6 @@
    ansible.builtin.shell: ya pkg add yazi-rs/plugins:full-border 
    ignore_errors: true
 
+ - name: yazi upgrade
+   ansible.builtin.shell: ya pkg upgrade
+   ignore_errors: true
