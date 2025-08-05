@@ -15,7 +15,7 @@ shopt -s checkwinsize
 
 source <(kubectl completion bash)
 eval "$(gh completion -s bash)"
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/.local/bin:/usr/local/go/bin
 
 
 if [ -f ~/.pnpm-completion.sh ]; then

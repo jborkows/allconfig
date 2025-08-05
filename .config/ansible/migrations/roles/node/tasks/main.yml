@@ -4,6 +4,8 @@
   apt:
     name: nodejs
     state: present
+- name: npm version
+  ansible.builtin.command: npm --version
 - name: Update npm
   ansible.builtin.command: npm install -g npm
   become: true
