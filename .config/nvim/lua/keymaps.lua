@@ -6,8 +6,12 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>[', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', '<leader>]', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '<leader>[', function()
+  vim.diagnostic.jump { count = -1 }
+end, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', '<leader>]', function()
+  vim.diagnostic.jump { count = 1 }
+end, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -112,4 +116,8 @@ vim.keymap.set('n', '<leader>w', function()
     vim.api.nvim_set_current_win(picked_window_id)
   end
 end)
+
+vim.keymap.set('n', ']c', ':Gitsigns next_hunk<CR>', { silent = true })
+vim.keymap.set('n', '[c', ':Gitsigns prev_hunk<CR>', { silent = true })
+
 -- vim: ts=2 sts=2 sw=2 et
