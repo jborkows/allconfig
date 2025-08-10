@@ -26,13 +26,6 @@
   become: true
   roles:
     - kubectl
-- name: Signal
-  become: true
-  hosts: localhost
-  roles:
-    - role: signal
-      tags:
-        - signal
 
 - name: Zoxide
   hosts: localhost

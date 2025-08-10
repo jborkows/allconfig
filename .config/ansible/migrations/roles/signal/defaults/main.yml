@@ -1,7 +1,0 @@
----
-signal_repo_url: "https://updates.signal.org/desktop/apt"
-signal_key_url: "{{ signal_repo_url }}/keys.asc"
-signal_keyring_path: "/usr/share/keyrings/signal-desktop-keyring.gpg"
-signal_sources_list: "/etc/apt/sources.list.d/signal-xenial.list"
-signal_arch: "amd64"
-signal_repo_codename: "xenial"
