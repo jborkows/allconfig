@@ -27,13 +27,6 @@
   roles:
     - kubectl
 
-- name: gh
-  hosts: localhost
-  roles:
-    - role: gh
-      tags:
-        - gh
-        - github
 - name: Applications
   hosts: localhost
   roles:
@@ -43,11 +36,6 @@
     - role: glow
       tags:
         - glow
-- name: Properties
-  hosts: localhost
-  become: false
-  roles:
-    - upgradeproperties
 
 - name: Bash customization
   hosts: localhost
