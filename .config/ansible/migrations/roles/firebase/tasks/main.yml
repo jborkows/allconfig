@@ -1,5 +1,0 @@
----
-- name: Install Firebase CLI
-  npm:
-    name: firebase-tools
-    global: yes

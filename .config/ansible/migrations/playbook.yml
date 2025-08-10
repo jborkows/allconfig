@@ -25,16 +25,7 @@
   hosts: localhost
   become: true
   roles:
-    - upgrade
-    - brave
     - kubectl
-    - node
-- name: Pandoc
-  hosts: localhost
-  roles:
-    - role: pandoc
-      tags:
-        - pandoc
 - name: Signal
   become: true
   hosts: localhost
@@ -71,13 +62,6 @@
     - role: glow
       tags:
         - glow
-- name: Applications needing sudo
-  hosts: localhost
-  become: true
-  roles:
-    - role: nvim
-      tags:
-        - nvim
 - name: Properties
   hosts: localhost
   become: false

@@ -2,11 +2,11 @@ go_install(){
     sudo rm -rf /usr/bin/go
     install(){
         echo $GO_VERSION
-        curl -Lo /tmp/go${GO_VERSION}.linux-amd64.tar.gz https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
+        curl -Lo /tmp/go${GO_VERSION}.linux-amd64.tar.gz https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz >> $LOG_FILE
         sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf /tmp/go${GO_VERSION}.linux-amd64.tar.gz
 
     }
-    if ! which go version > /dev/null; then 
+    if ! which go > /dev/null; then 
         install
         return
     fi
@@ -41,6 +41,7 @@ go_install
 go_lang_cli
 
 
-go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
-go install -tags 'sqlite3' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
-go install github.com/air-verse/air@latest
+go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest >> $LOG_FILE
+go install -tags 'sqlite3' github.com/golang-migrate/migrate/v4/cmd/migrate@latest >> $LOG_FILE
+go install github.com/air-verse/air@latest >> $LOG_FILE
+

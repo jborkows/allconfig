@@ -4,6 +4,7 @@ if ! which cargo > /dev/null; then
 fi
 
 
-rustup update
-cargo install stylua
-cargo install ripgrep
+rustup update >> $LOG_FILE
+cargo install stylua >> $LOG_FILE
+cargo install ripgrep >> $LOG_FILE
+
