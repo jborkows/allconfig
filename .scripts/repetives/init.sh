@@ -1,4 +1,5 @@
 #/usr/bin/env bash
+set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source $SCRIPT_DIR/versions.env
 
@@ -18,12 +19,28 @@ fi
 exec_script() {
     name=$1
     cowsay -f dragon "executing $name" | lolcat
-    bash ./$name
+    . ./$name
     cowsay -f dragon "done $name"| lolcat
 }
 
+function set_default_apps_no_hyprland() {
+  echo "Post actions"
+    xdg-settings set default-web-browser brave-browser.desktop
+}
+
 pushd $SCRIPT_DIR
+exec_script rust_install.sh
+exec_script go_install.sh
 exec_script waybarcron.sh
-exec_script golangcli.sh
 exec_script nvm_install.sh
 popd
+
+# pushd "$HOME/.config/ansible/migrations" || exit
+# ansible-playbook  playbook.yml  --extra-vars "docker_data_dir=/datadisk/dockerdir"
+#
+# cowsay -f dragon "Ansible playbook executed successfully"
+#
+# popd || exit
+#
+
+set_default_apps_no_hyprland

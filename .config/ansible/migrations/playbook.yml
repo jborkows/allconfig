@@ -42,12 +42,6 @@
     - role: signal
       tags:
         - signal
-- name: Golang
-  hosts: localhost
-  roles:
-    - role: golang
-      tags:
-        - golang
 - name: Kitty
   hosts: localhost
   roles:
@@ -71,7 +65,6 @@
 - name: Applications
   hosts: localhost
   roles:
-    - rust
     - role: yazi
       tags:
         - yazi
