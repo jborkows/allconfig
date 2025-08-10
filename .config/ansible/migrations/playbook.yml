@@ -33,12 +33,6 @@
     - role: signal
       tags:
         - signal
-- name: Kitty
-  hosts: localhost
-  roles:
-    - role: kitty
-      tags:
-        - kitty
 
 - name: Zoxide
   hosts: localhost
