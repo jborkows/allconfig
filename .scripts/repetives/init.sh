@@ -40,6 +40,7 @@ exec_script waybarcron.sh
 exec_script nvm_install.sh
 exec_script nvim.sh
 exec_script pandoc.sh
+exec_script kitty.sh
 popd
 
 # pushd "$HOME/.config/ansible/migrations" || exit
