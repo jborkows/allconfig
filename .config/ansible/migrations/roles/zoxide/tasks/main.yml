@@ -1,8 +1,0 @@
----
- - name: Download zoxide installer script
-   ansible.builtin.get_url:
-     url:  https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh  
-     dest: /tmp/zoxide_installer.sh
-     mode: '0755'
- - name: Execute installer script
-   ansible.builtin.shell: /tmp/zoxide_installer.sh  

@@ -27,12 +27,6 @@
   roles:
     - kubectl
 
-- name: Zoxide
-  hosts: localhost
-  roles:
-    - role: zoxide  
-      tags:
-        - zoxide
 - name: gh
   hosts: localhost
   roles:
