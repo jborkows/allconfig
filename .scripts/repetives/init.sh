@@ -2,7 +2,7 @@
 mode=${1:-ALL}
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-rm /tmp/update_*.log
+rm /tmp/update_*.log || true
 export LOG_FILE=/tmp/update_$(date +"%Y%m%d_%H%M%S").log
 date >> $LOG_FILE
 echo "Executing for $mode"
