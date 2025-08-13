@@ -75,4 +75,5 @@ eval "$(carapace setup bash)"
 export PATH="$PATH:/opt/nvim-linux64/bin:/home/jborkows/go/bin"
 
 set -o vi
+shopt -s globstar
 

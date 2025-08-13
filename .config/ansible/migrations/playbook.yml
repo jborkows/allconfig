@@ -37,13 +37,6 @@
       tags:
         - glow
 
-- name: Bash customization
-  hosts: localhost
-  roles:
-    - bashcustomization
-  tags:
-    - bash
-
 - name: Docker
   hosts: localhost
   become: true
