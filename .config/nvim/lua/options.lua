@@ -65,12 +65,29 @@ local function ensure_spell_files()
   end
 
   if vim.fn.filereadable(pl_spl) == 0 then
-    vim.fn.system { 'wget', '--no-check-certificate', 'https://ftp.vim.org/vim/runtime/spell/pl.utf-8.spl', '-P', spell_dir }
+    vim.system({
+      'wget',
+      '--no-check-certificate',
+      'https://ftp.vim.org/vim/runtime/spell/pl.utf-8.spl',
+      '-P',
+      spell_dir,
+    }, { text = true }, function(obj)
+      if obj.code == 0 then
+        vim.schedule(function()
+          vim.notify('Polish spellfile downloaded ✅', vim.log.levels.INFO)
+        end)
+      else
+        vim.schedule(function()
+          vim.notify('Failed to download spellfile ❌', vim.log.levels.ERROR)
+        end)
+      end
+    end)
   end
 end
-
 -- Call the function to ensure the spell files are installed
-ensure_spell_files()
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = ensure_spell_files,
+})
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
