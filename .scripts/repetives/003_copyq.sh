@@ -24,15 +24,20 @@ copyq_install(){
         required
         (
             cd /tmp
-            git clone https://github.com/hluk/CopyQ.git
+            git clone https://github.com/hluk/CopyQ.git || true
             cd CopyQ
+            git fetch
+            git pull
             cmake .
             make
             cp copyq ~/programs
+            pkill copyq || true
+            copyq --server 
         )
     }
-    VERSION_LATEST=$(curl -Ls -o /dev/null -w "%{url_effective}\n"  https://github.com/hluk/CopyQ/releases/latest)
-    VERSION=${VERSION_LATEST##*/}
+    VERSION=$(curl -Ls -o /dev/null -w "%{url_effective}\n"  https://github.com/hluk/CopyQ/releases/latest)
+    VERSION=${VERSION##*/}
+    VERSION=${VERSION:1}
 
     if ! which copyq >> /dev/null; then
         install
