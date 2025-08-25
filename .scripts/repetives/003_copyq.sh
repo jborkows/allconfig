@@ -30,9 +30,9 @@ copyq_install(){
             git pull
             cmake .
             make
-            cp copyq ~/programs
             pkill copyq || true
-            copyq --server 
+            cp copyq ~/programs
+            copyq --start-server 
         )
     }
     VERSION=$(curl -Ls -o /dev/null -w "%{url_effective}\n"  https://github.com/hluk/CopyQ/releases/latest)
