@@ -128,9 +128,8 @@ return {
         },
       },
 
-      -- Disable ghost text to match original behavior
       ghost_text = {
-        enabled = true,
+        enabled = false,
       },
     }
 
