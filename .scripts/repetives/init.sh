@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 mode=${1:-ALL}
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -29,41 +29,45 @@ can_exec(){
     fi
 }
 
+log_message(){
+    echo "$@" >> "$LOG_FILE"
+}
+
+
 exec_script() {
     name=$1
-    if ! can_exec $name; then
+    if ! can_exec "$name"; then
         return 0
     fi
-    echo "#########" >> $LOG_FILE
-    echo "Executing $name" >> $LOG_FILE
-    echo "#########" >> $LOG_FILE
+    log_message "#########" 
+    log_message "Executing $name" 
+    log_message "#########" 
 
     cowsay -f dragon "executing $name" | lolcat
-    . ./$name
+    . "./$name"
     cowsay -f dragon "done $name"| lolcat
-    echo "#########" >> $LOG_FILE
-    echo "Done $name" >> $LOG_FILE
-    echo "#########" >> $LOG_FILE
+    log_message "#########" 
+    log_message "Done $name" 
+    log_message "#########" 
+}
+
+exec_apt(){
+ sudo apt "$@" | tee -a "$LOG_FILE"
 }
 
 if can_exec upgrade; then
-    sudo apt update >> $LOG_FILE   
-    sudo apt upgrade -y >> $LOG_FILE   
-    sudo apt autoremove -y >> $LOG_FILE
-    sudo apt install -y lolcat cowsay git >> $LOG_FILE 
+    exec_apt update 
+    exec_apt upgrade -y
+    exec_apt autoremove -y
+    exec_apt install -y lolcat cowsay git
 fi
 
-pushd $SCRIPT_DIR
-for script in $(ls *.sh | grep -v init.sh | sort ); do
-    exec_script $script
-done;
+pushd "$SCRIPT_DIR"
+shopt -s nullglob
+while IFS= read -r script; do
+    [[ "$script" != "init.sh" ]] || continue
+    exec_script "$script"
+done < <(printf '%s\n' *.sh | sort)
 popd
 
-# pushd "$HOME/.config/ansible/migrations" || exit
-# ansible-playbook  playbook.yml  --extra-vars "docker_data_dir=/datadisk/dockerdir"
-#
-# cowsay -f dragon "Ansible playbook executed successfully"
-#
-# popd || exit
-#
 
