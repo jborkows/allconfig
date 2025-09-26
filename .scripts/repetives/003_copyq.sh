@@ -1,6 +1,6 @@
 copyq_install(){
     required(){
-        sudo apt install \
+        sudo apt install -y \
           cmake \
           extra-cmake-modules \
           git \
