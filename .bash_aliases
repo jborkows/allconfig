@@ -7,5 +7,6 @@ alias cd=z
 alias cdx=zi
 alias hl='rg --passthru'
 alias signal='signal-desktop --password-store=kwallet6'
-
+alias tmuux=tmux
+alias tmuxx=tmux
 
