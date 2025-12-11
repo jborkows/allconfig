@@ -1,12 +1,12 @@
 return {
   {
-    'mistricky/codesnap.nvim',
-    build = 'make',
-    opts = {
-      save_path = '~/Pictures',
-      has_breadcrumbs = true,
-      bg_theme = 'dusk',
-      watermark = 'Borkowski J',
-    },
+    -- 'mistricky/codesnap.nvim',
+    -- build = 'make',
+    -- opts = {
+    --   save_path = '~/Pictures',
+    --   has_breadcrumbs = true,
+    --   bg_theme = 'dusk',
+    --   watermark = 'Borkowski J',
+    -- },
   },
 }
