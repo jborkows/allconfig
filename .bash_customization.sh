@@ -67,7 +67,18 @@ fi
 
 # Save and reload the history after each command
 PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
-eval "$(zoxide init bash)"
+
+if which zoxide >> /dev/null; then
+    eval "$(zoxide init bash)"
+fi
+
+if which direnv >> /dev/null; then
+    eval "$(direnv hook bash)"
+fi
+
+sdk_man_init_file="$HOME/.sdkman/bin/sdkman-init.sh"
+[ -f "${sdk_man_init_file}" ] &&  source  "${sdk_man_init_file}"
+
 export EDITOR=nvim
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 source <(carapace _carapace)

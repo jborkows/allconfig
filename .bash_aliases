@@ -3,8 +3,10 @@ alias githubchoser='bash ~/.scripts/github/githubchoser.sh'
 alias updateansible='bash ~/.scripts/update_ansible.sh'
 alias addremote='bash ~/.scripts/add_github_remote.sh'
 alias ..='cd ..'
-alias cd=z
-alias cdx=zi
+if which zoxide >> /dev/null; then
+	alias cd=z
+	alias cdx=zi
+fi
 alias hl='rg --passthru'
 alias signal='signal-desktop --password-store=kwallet6'
 alias tmuux=tmux
