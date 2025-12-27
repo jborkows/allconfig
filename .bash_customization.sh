@@ -80,7 +80,7 @@ sdk_man_init_file="$HOME/.sdkman/bin/sdkman-init.sh"
 [ -f "${sdk_man_init_file}" ] &&  source  "${sdk_man_init_file}"
 async_profiler_path="$HOME/programs/asyncprofiler"
 
-if [ -f "${async_profiler_path}" ]; then
+if [ -d "${async_profiler_path}" ]; then
     export ASYNC_PROFILER_HOME="${async_profiler_path}"
 fi
 export EDITOR=nvim
