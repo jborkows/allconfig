@@ -4,7 +4,7 @@ sudo apt install -y cowsay python3 git \
     obs-studio  ffmpeg  pipewire stow sox fonts-noto-color-emoji clamav \
     tmux ntfs-3g ufw texlive  \
     libheif-examples tidy build-essential  avr-libc  gcc-avr avrdude  clangd bear lldb libjemalloc-dev \
-    autoconf  libtool waybar network-manager swaylock zstd git-lfs >> "$LOG_FILE"
+    autoconf  libtool waybar network-manager swaylock zstd git-lfs  grim slurp wl-clipboard >> "$LOG_FILE"
 
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || true 
