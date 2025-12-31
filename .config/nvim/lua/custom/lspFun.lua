@@ -65,12 +65,15 @@ M.attach = function(event)
     return
   end
   if client.server_capabilities.documentHighlightProvider then
+    local highlight_group = vim.api.nvim_create_augroup('lsp-highlight-' .. client.id, { clear = true })
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+      group = highlight_group,
       buffer = event.buf,
       callback = vim.lsp.buf.document_highlight,
     })
 
     vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+      group = highlight_group,
       buffer = event.buf,
       callback = vim.lsp.buf.clear_references,
     })
