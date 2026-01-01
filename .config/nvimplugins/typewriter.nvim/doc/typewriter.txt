@@ -1,0 +1,207 @@
+*typewriter.txt*  Typewriter sounds for Neovim
+
+Author:  typewriter.nvim authors
+License: MIT
+
+==============================================================================
+CONTENTS                                                  *typewriter-contents*
+
+    1. Introduction ............................ |typewriter-introduction|
+    2. Requirements ............................ |typewriter-requirements|
+    3. Installation ............................ |typewriter-installation|
+    4. Configuration ........................... |typewriter-configuration|
+    5. Commands ................................ |typewriter-commands|
+    6. API ..................................... |typewriter-api|
+    7. Health Check ............................ |typewriter-health|
+
+==============================================================================
+1. INTRODUCTION                                       *typewriter-introduction*
+
+typewriter.nvim brings the nostalgic sounds of a mechanical typewriter to
+Neovim. Each keystroke produces a satisfying click, pressing Enter triggers
+a carriage return sound, and approaching the right margin rings a bell -
+just like a real typewriter!
+
+Features:
+- Click sounds on each keystroke
+- Carriage return sound on Enter
+- Bell/ding sound when approaching the right margin (configurable column)
+- Cross-platform audio player detection
+- Configurable cooldowns and sound files
+- Buffer-local enable/disable
+
+==============================================================================
+2. REQUIREMENTS                                       *typewriter-requirements*
+
+- Neovim >= 0.7.0
+- An audio player (one of the following):
+  - `play` (SoX) - recommended, cross-platform
+  - `afplay` - macOS native
+  - `paplay` - PulseAudio (Linux)
+  - `aplay` - ALSA (Linux)
+  - `mpv` - universal media player
+  - `ffplay` - FFmpeg player
+
+Installing SoX (recommended):
+>
+    # Ubuntu/Debian
+    sudo apt install sox libsox-fmt-all
+
+    # Fedora
+    sudo dnf install sox
+
+    # macOS
+    brew install sox
+
+    # Arch Linux
+    sudo pacman -S sox
+<
+
+==============================================================================
+3. INSTALLATION                                       *typewriter-installation*
+
+Using lazy.nvim: >lua
+    {
+        "your-username/typewriter.nvim",
+        config = function()
+            require("typewriter").setup()
+        end,
+    }
+<
+
+Using packer.nvim: >lua
+    use {
+        "your-username/typewriter.nvim",
+        config = function()
+            require("typewriter").setup()
+        end,
+    }
+<
+
+==============================================================================
+4. CONFIGURATION                                     *typewriter-configuration*
+
+Call `setup()` with a configuration table. All options are optional.
+
+Default configuration: >lua
+    require("typewriter").setup({
+        -- Start with sounds enabled
+        enabled = false,
+
+        -- Custom sound files (uses built-in sounds if nil)
+        sounds = {
+            clicks = nil,     -- Table of click sound paths
+            carriage = nil,   -- Carriage return sound path
+            ding = nil,       -- Bell/ding sound path
+        },
+
+        -- Cooldown between sounds (in milliseconds)
+        cooldown = {
+            character = 200,  -- Between click sounds
+            enter = 500,      -- Between carriage sounds
+        },
+
+        -- Column at which the bell rings (0 to disable)
+        -- Like a real typewriter, this warns you're near the margin
+        ding_at_column = 72,
+
+        -- The margin width (for reference, not enforced)
+        margin_width = 80,
+
+        -- Audio player: "auto", "play", "afplay", "paplay", "aplay",
+        -- "mpv", "ffplay", or a custom command string
+        player = "auto",
+
+        -- Volume (0.0 to 1.0) - only works with some players
+        volume = 1.0,
+    })
+<
+
+Example with custom settings: >lua
+    require("typewriter").setup({
+        enabled = true,  -- Start enabled
+        ding_at_column = 80,  -- Ding at column 80
+        cooldown = {
+            character = 150,  -- Faster clicks
+        },
+    })
+<
+
+Example with custom sounds: >lua
+    require("typewriter").setup({
+        sounds = {
+            clicks = {
+                "/path/to/click1.wav",
+                "/path/to/click2.wav",
+            },
+            carriage = "/path/to/carriage.wav",
+            ding = "/path/to/bell.wav",
+        },
+    })
+<
+
+==============================================================================
+5. COMMANDS                                               *typewriter-commands*
+
+                                                          *:TypewriterToggle*
+:TypewriterToggle
+    Toggle typewriter sounds on/off globally.
+
+                                                          *:TypewriterEnable*
+:TypewriterEnable
+    Enable typewriter sounds globally.
+
+                                                         *:TypewriterDisable*
+:TypewriterDisable
+    Disable typewriter sounds globally.
+
+                                                    *:TypewriterBufferToggle*
+:TypewriterBufferToggle
+    Toggle typewriter sounds for the current buffer only.
+    Buffer-local settings override the global setting.
+
+==============================================================================
+6. API                                                         *typewriter-api*
+
+                                                     *typewriter.setup()*
+typewriter.setup({opts})
+    Initialize the plugin with the given options.
+    See |typewriter-configuration| for available options.
+
+                                                     *typewriter.enable()*
+typewriter.enable({opts})
+    Enable typewriter sounds.
+    Options:
+        - `buffer` (boolean): If true, enables for current buffer only
+
+                                                    *typewriter.disable()*
+typewriter.disable({opts})
+    Disable typewriter sounds.
+    Options:
+        - `buffer` (boolean): If true, disables for current buffer only
+
+                                                     *typewriter.toggle()*
+typewriter.toggle({opts})
+    Toggle typewriter sounds.
+    Options:
+        - `buffer` (boolean): If true, toggles for current buffer only
+
+                                                 *typewriter.is_enabled()*
+typewriter.is_enabled()
+    Returns `true` if typewriter sounds are enabled for the current buffer.
+
+                                                 *typewriter.get_config()*
+typewriter.get_config()
+    Returns a copy of the current configuration table.
+
+==============================================================================
+7. HEALTH CHECK                                           *typewriter-health*
+
+Run `:checkhealth typewriter` to verify your setup:
+
+- Checks for available audio players
+- Verifies sound files exist
+- Shows current plugin status and configuration
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
