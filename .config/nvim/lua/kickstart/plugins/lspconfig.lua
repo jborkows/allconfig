@@ -39,6 +39,14 @@ return {
         callback = lspFun.attach,
       })
 
+      -- LspDetach autocmd to clean up highlight autocmds
+      vim.api.nvim_create_autocmd('LspDetach', {
+        group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+        callback = function(args)
+          pcall(vim.api.nvim_del_augroup_by_name, 'lsp-highlight-' .. args.data.client_id)
+        end,
+      })
+
       -- Global config for all LSP servers
       vim.lsp.config('*', {
         capabilities = require('blink.cmp').get_lsp_capabilities(),
