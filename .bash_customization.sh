@@ -83,6 +83,8 @@ async_profiler_path="$HOME/programs/asyncprofiler"
 if [ -d "${async_profiler_path}" ]; then
     export ASYNC_PROFILER_HOME="${async_profiler_path}"
 fi
+
+[ -f  "${HOME}/.bash_completion.d/kerl" ] && source "${HOME}/.bash_completion.d/kerl"
 export EDITOR=nvim
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 source <(carapace _carapace)
