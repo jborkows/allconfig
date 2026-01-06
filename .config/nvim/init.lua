@@ -108,6 +108,9 @@ require 'lazy-bootstrap'
 -- [[ Configure and install plugins ]]
 require 'lazy-plugins'
 
+-- [[ Native LSP setup (Neovim 0.11+) ]]
+require 'lsp-setup'
+
 require 'custom.floatterminal'
 
 local function load_project_config()

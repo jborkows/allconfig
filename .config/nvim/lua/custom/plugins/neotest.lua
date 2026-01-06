@@ -12,8 +12,7 @@ return {
         },
       }, neotest_ns)
 
-      local lspconfig = require 'lspconfig'
-      local root_dir = lspconfig.util.root_pattern '.git' (vim.fn.expand '%:p') or vim.fn.getcwd()
+      local root_dir = vim.fs.root(0, { '.git', 'go.mod', 'mix.exs' }) or vim.fn.getcwd()
 
       require('neotest').setup {
         adapters = {
