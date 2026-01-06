@@ -4,10 +4,14 @@ return {
     ft = 'lua', -- only load on lua files
     opts = {
       library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
-        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+        -- Load Neovim runtime
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        -- Add Neovim runtime for vim.* completions
+        { path = vim.env.VIMRUNTIME .. '/lua' },
+        { path = vim.fn.stdpath 'config' .. '/lua' },
       },
     },
   },
+  -- Optional: luvit types for vim.uv
+  { 'Bilal2453/luvit-meta', lazy = true },
 }
