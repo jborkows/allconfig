@@ -20,5 +20,5 @@ set +euo pipefail
 nvm install --lts     >> $LOG_FILE  #                Install the latest LTS version
 nvm use --lts         >> $LOG_FILE #                Use the latest LTS version
 npm install -g neovim >> $LOG_FILE
+npm install -g @playwright/mcp >> $LOG_FILE
 set -euo pipefail
-

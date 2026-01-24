@@ -22,4 +22,7 @@ _darcs
 ^/LICENSE.*
 ^/COPYING
 
+^/\.opencode/node_modules
+^/\.opencode/bin
+
 \.ssh/known_hosts
