@@ -11,7 +11,16 @@ return {
       hint = { enable = true },
       completion = { callSnippet = 'Replace' },
       -- Let lazydev.nvim handle workspace library for Neovim runtime
-      workspace = { checkThirdParty = false },
+      workspace = { 
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+          "${3rd}/luv/library"
+        }
+      },
+      diagnostics = {
+        globals = { 'vim' }
+      }
     },
   },
 }
