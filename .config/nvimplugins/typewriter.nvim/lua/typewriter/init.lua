@@ -1,14 +1,7 @@
 local M = {}
 
--- State
-local state = {
-	enabled = false,
-	cr_keymap_set = false,
-	original_cr_mapping = nil,
-}
-
--- Default configuration
-local config = {
+-- Default configuration constants
+M.defaults = {
 	enabled = false,
 	sounds = {
 		clicks = nil, -- Will be set to default sounds
@@ -24,6 +17,16 @@ local config = {
 	player = "auto", -- "auto", "play", "afplay", "paplay", "aplay", or custom command
 	volume = 1.0, -- Volume (0.0 to 1.0) - only works with some players
 }
+
+-- State
+local state = {
+	enabled = false,
+	cr_keymap_set = false,
+	original_cr_mapping = nil,
+}
+
+-- Active configuration (starts as a copy of defaults)
+local config = vim.deepcopy(M.defaults)
 
 -- Timing state
 local timing = {
@@ -334,8 +337,7 @@ end
 function M.setup(opts)
 	opts = opts or {}
 
-	-- Merge user config with defaults
-	config = vim.tbl_deep_extend("force", config, opts)
+	config = vim.tbl_deep_extend("force", vim.deepcopy(M.defaults), opts)
 
 	-- Detect audio player
 	audio_player = detect_audio_player()

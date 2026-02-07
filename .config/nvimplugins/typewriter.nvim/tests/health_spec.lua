@@ -1,0 +1,16 @@
+local health = require("typewriter.health")
+local assert = require("luassert.assert")
+
+describe("health", function()
+	describe("check", function()
+		it("should run without errors", function()
+			assert.has_no.errors(function()
+				health.check()
+			end)
+		end)
+
+		it("should be a function", function()
+			assert.equals("function", type(health.check))
+		end)
+	end)
+end)
