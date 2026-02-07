@@ -70,6 +70,10 @@ return {
           module = 'vim_dadbod_completion.blink',
           -- Only show in SQL file types
           enabled = function(ctx)
+            if not ctx or not ctx.bufnr then
+              -- When ctx is nil, check current buffer filetype
+              return vim.tbl_contains({ 'sql', 'mysql', 'plsql' }, vim.bo.filetype)
+            end
             return vim.tbl_contains({ 'sql', 'mysql', 'plsql' }, vim.bo[ctx.bufnr].filetype)
           end,
         },

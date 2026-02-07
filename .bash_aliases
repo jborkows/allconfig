@@ -11,4 +11,5 @@ alias hl='rg --passthru'
 alias signal='signal-desktop --password-store=kwallet6'
 alias tmuux=tmux
 alias tmuxx=tmux
+alias mdkir=mkdir
 alias nvim_swap='cd $HOME/.local/state/nvim/swap'
