@@ -84,8 +84,7 @@ vim.keymap.set('n', '<leader>p', [["+P]], { desc = 'clipboard paste' })
 
 vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
 
-vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = 'start replacing current word' })
+vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'start replacing current word' })
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'make file executable' })
 vim.keymap.set('n', '<leader>r', '<cmd>e! %<CR>', { silent = true, desc = 'reload current file from disk' })
 
@@ -109,6 +108,40 @@ function ToggleCopilot()
 end
 
 vim.keymap.set('n', '<leader>cp', ToggleCopilot, { desc = 'Toggle Copilot' })
+
+local function find_project_root()
+  local current_dir = vim.fn.expand '%:p:h'
+  while current_dir ~= '/' do
+    if vim.fn.isdirectory(current_dir .. '/.git') == 1 then
+      return current_dir
+    end
+    current_dir = vim.fn.fnamemodify(current_dir, ':h')
+  end
+  return nil
+end
+
+local function copy_relative_path()
+  local full_path = vim.fn.expand '%:p'
+  if full_path == '' then
+    vim.notify('No file in buffer', vim.log.levels.WARN)
+    return
+  end
+
+  local project_root = find_project_root()
+  local relative_path
+
+  if project_root then
+    relative_path = vim.fn.fnamemodify(full_path, ':.')
+  else
+    relative_path = full_path
+    vim.notify('No .git found, using full path', vim.log.levels.WARN)
+  end
+
+  vim.fn.setreg('+', relative_path)
+  vim.notify('Copied: ' .. relative_path, vim.log.levels.INFO)
+end
+
+vim.keymap.set('n', '<leader>fp', copy_relative_path, { desc = 'Copy relative file path to clipboard' })
 
 vim.keymap.set('n', '<leader>w', function()
   local picked_window_id = require('window-picker').pick_window()
