@@ -95,4 +95,5 @@ vim.opt.termguicolors = true
 vim.opt.spell = true
 vim.opt.spelllang = 'en_us,pl'
 
+vim.o.exrc = true
 -- vim: ts=2 sts=2 sw=2 et
