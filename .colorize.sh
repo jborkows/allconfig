@@ -3,11 +3,12 @@
 # borrowed heavily from https://grml.org
 
 # Begin blinking text mode
-# I just use bold red here since my terminal has blinking disabled
-export LESS_TERMCAP_mb=$'\e[1;31m'
+# Catppuccin Mocha: Pink #f5c2e7
+export LESS_TERMCAP_mb=$'\e[1;38;2;245;194;231m'
 
 # Begin bold text mode
-export LESS_TERMCAP_md=$'\e[1;31m'
+# Catppuccin Mocha: Pink #f5c2e7
+export LESS_TERMCAP_md=$'\e[1;38;2;245;194;231m'
 
 # End all special formatting started by mb/md/etc.
 export LESS_TERMCAP_me=$'\e[0m'
@@ -16,15 +17,15 @@ export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
 
 # Begin standout mode
-# search results - bold, yellow foreground, blue background.
-export LESS_TERMCAP_so=$'\e[1;33;44m'
+# Catppuccin Mocha: Yellow #f9e2af on Surface1 #45475a
+export LESS_TERMCAP_so=$'\e[1;38;2;249;226;175;48;2;69;71;90m'
 
 # End underline mode
 export LESS_TERMCAP_ue=$'\e[0m'
 
 # Begin underline mode
-# underline and bold green
-export LESS_TERMCAP_us=$'\e[4;1;32m'
+# Catppuccin Mocha: Green #a6e3a1
+export LESS_TERMCAP_us=$'\e[4;1;38;2;166;227;161m'
 
 # Begin reverse-video mode
 export LESS_TERMCAP_mr=$'\e[7m'
