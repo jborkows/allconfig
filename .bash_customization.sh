@@ -94,3 +94,5 @@ export PATH="$PATH:/opt/nvim-linux64/bin:/home/jborkows/go/bin"
 set -o vi
 shopt -s globstar
 
+
+[ -f  "${HOME}/.colorize.sh" ] && source "${HOME}/.colorize.sh" 
