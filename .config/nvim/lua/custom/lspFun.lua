@@ -55,6 +55,22 @@ M.attach = function(event)
   map('<leader>cf', vim.lsp.buf.format, 'Format')
   map('<leader>fu', vim.lsp.buf.references, 'Find references')
 
+  vim.keymap.set({ 'x', 'o' }, 'an', function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+      require('vim.treesitter._select').select_parent(vim.v.count1)
+    else
+      vim.lsp.buf.selection_range(vim.v.count1)
+    end
+  end, { desc = 'Select parent treesitter node or outer incremental lsp selections' })
+
+  vim.keymap.set({ 'x', 'o' }, 'in', function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+      require('vim.treesitter._select').select_child(vim.v.count1)
+    else
+      vim.lsp.buf.selection_range(-vim.v.count1)
+    end
+  end, { desc = 'Select child treesitter node or inner incremental lsp selections' })
+
   -- The following two autocommands are used to highlight references of the
   -- word under your cursor when your cursor rests there for a little while.
   --    See `:help CursorHold` for information about when this is executed

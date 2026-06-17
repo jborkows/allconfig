@@ -45,6 +45,8 @@ nmap <leader>sa <Action>(ShowIntentionActions)
 map <leader>mv <Action>(RenameElement)
 " delete into "void" registry
 vmap <leader>d "_dP
+vmap an <Action>(EditorSelectWord)
+vmap in <Action>(EditorUnSelectWord)
 vmap <leader>y "+y
 nmap <leader>y "+y
 nmap <leader>Y "+Y
