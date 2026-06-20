@@ -94,3 +94,5 @@ nmap <leader>z <Action>(HideAllWindows)
 nmap <leader>pv <Action>(HideAllWindows)<Action>(ActivateProjectToolWindow)
 nmap - <Action>(HideAllWindows)<Action>(ActivateProjectToolWindow)
 
+vmap an :action EditorSelectWord<CR>
+vmap in :action EditorUnSelectWord<CR>
