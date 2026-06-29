@@ -1,0 +1,7 @@
+{
+  "Identity primary key column": {
+    "prefix": "idpk",
+    "body": "id bigint generated always as identity primary key,",
+    "description": "Generate an identity primary key column"
+  }
+}

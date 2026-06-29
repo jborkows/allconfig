@@ -1,0 +1,13 @@
+{
+  "Map array": {
+    "prefix": "ma",
+    "body": [
+      "local ${1:result} = {}",
+      "for _, elem in ipairs(${2:list}) do",
+      "  table.insert(${1:result}, ${3:transform}(elem))",
+      "end",
+      "${0}"
+    ],
+    "description": "Map over an array with ipairs"
+  }
+}

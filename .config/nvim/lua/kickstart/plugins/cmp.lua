@@ -161,7 +161,7 @@ return {
     require('blink.cmp').setup(opts)
 
     -- Load custom snippets if they exist (matching your original config)
-    for _, ft_path in pairs(vim.api.nvim_get_runtime_file('lua/custom/snppets/*.lua', true)) do
+    for _, ft_path in pairs(vim.api.nvim_get_runtime_file('lua/custom/snippets/*.lua', true)) do
       loadfile(ft_path)()
     end
 
