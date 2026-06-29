@@ -47,7 +47,7 @@ if ! asdf list erlang 2>/dev/null | grep -q "$LATEST_ERLANG"; then
     echo "Installing erlang $LATEST_ERLANG..."
     asdf install erlang latest >> $LOG_FILE 2>&1
 fi
-asdf global erlang latest >> $LOG_FILE 2>&1
+asdf set --home erlang "$LATEST_ERLANG" >> $LOG_FILE 2>&1
 
 # Install latest elixir if not installed
 LATEST_ELIXIR=$(asdf latest elixir)
@@ -55,6 +55,6 @@ if ! asdf list elixir 2>/dev/null | grep -q "$LATEST_ELIXIR"; then
     echo "Installing elixir $LATEST_ELIXIR..."
     asdf install elixir latest >> $LOG_FILE 2>&1
 fi
-asdf global elixir latest >> $LOG_FILE 2>&1
+asdf set --home elixir "$LATEST_ELIXIR" >> $LOG_FILE 2>&1
 
 echo "asdf setup complete with erlang $LATEST_ERLANG and elixir $LATEST_ELIXIR"

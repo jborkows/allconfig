@@ -3,7 +3,7 @@ sdkman_install(){
         curl -s "https://get.sdkman.io" | bash
     }
 
-    if ! which sdkman >> /dev/null; then
+    if ! which sdk >> /dev/null; then
         install
         return
     fi

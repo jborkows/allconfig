@@ -14,7 +14,12 @@ copyq_install(){
           qt6-wayland-dev \
           libqt6svg6-dev \
           libqt6opengl6-dev \
-          libqt6openglwidgets6 
+          libqt6openglwidgets6 \
+          libqca-qt6-dev \
+          libqca-qt6-plugins \
+          qtkeychain-qt6-dev \
+          libqt6keychain1 \
+          libminiaudio-dev
     }
 
     install(){
