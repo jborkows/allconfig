@@ -3,5 +3,15 @@
     "prefix": "idpk",
     "body": "id bigint generated always as identity primary key,",
     "description": "Generate an identity primary key column"
+  },
+  "Create table": {
+    "prefix": "ct",
+    "body": [
+      "create table ${1:name} (",
+      "  id bigint generated always as identity primary key,",
+      "  ${2:column} ${3:type},",
+      ");"
+    ],
+    "description": "Create a new table with identity primary key"
   }
 }

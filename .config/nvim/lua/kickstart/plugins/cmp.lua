@@ -14,14 +14,13 @@ return {
   opts = function(_, opts)
     opts.keymap = {
       preset = 'none', -- We'll define custom keymaps
-      ['<TAB>'] = { 'select_next', 'fallback' },
-      ['<S-TAB>'] = { 'select_prev', 'fallback' },
+      -- Tab jumps snippet placeholders first, then completion items, then literal tab
+      ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
+      ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
       ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
       ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
       ['<M-a>'] = { 'accept', 'fallback' }, -- Your original confirm mapping
       ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-      -- Note: LuaSnip navigation (<M-d>, <M-s>) needs to be handled separately
-      -- if you're keeping LuaSnip
     }
 
     opts.appearance = {

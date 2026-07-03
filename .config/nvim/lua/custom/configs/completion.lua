@@ -5,15 +5,6 @@
 -- SQL completion with vim-dadbod-completion is now handled in the main blink.cmp config
 -- The dadbod provider is automatically available for sql, mysql, plsql filetypes
 
--- Use vim.snippet for snippet navigation
-vim.keymap.set({ 'i', 's' }, '<M-d>', function()
-  if vim.snippet.active { direction = 1 } then
-    vim.snippet.jump(1)
-  end
-end, { desc = 'Jump to next snippet placeholder' })
-
-vim.keymap.set({ 'i', 's' }, '<M-s>', function()
-  if vim.snippet.active { direction = -1 } then
-    vim.snippet.jump(-1)
-  end
-end, { desc = 'Jump to previous snippet placeholder' })
+-- Snippet navigation is handled by blink.cmp keymaps:
+--   <Tab>   -> next snippet placeholder / next completion item / literal tab
+--   <S-Tab> -> previous snippet placeholder / previous completion item
