@@ -5,7 +5,7 @@ sudo apt install -y cowsay python3 git \
     tmux ntfs-3g ufw texlive parallel \
     libheif-examples tidy build-essential  avr-libc  gcc-avr avrdude  clangd bear lldb libjemalloc-dev \
     autoconf  libtool waybar network-manager swaylock zstd git-lfs  grim slurp wl-clipboard chromium-browser \
-    libwxgtk3.2-dev  build-essential autoconf libncurses-dev libssl-dev | sudo tee -a "$LOG_FILE" || true
+    libwxgtk3.2-dev  build-essential autoconf libncurses-dev libssl-dev zbar-tools cheese | sudo tee -a "$LOG_FILE" || true
 
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || true 

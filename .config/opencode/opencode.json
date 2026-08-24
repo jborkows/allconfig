@@ -8,6 +8,20 @@
     }
   },
   "permission": {
+    "*": "ask",
+    "git log *": "allow",
+    "kubectl get *": "allow",
+    "kubectl describe *": "allow",
+    "kubectl logs *": "allow",
+    "grep *": "allow",
+    "ls *": "allow",
+    "xxd *": "allow",
+    "free *": "allow",
+    "uname *": "allow",
+    "npm *": "allow",
+    "make *": "allow",
+    "rm -rf *": "deny",
+    "grep *": "allow",
     "skill": {
       "*": "allow",
       "open-site": "allow"

@@ -33,7 +33,7 @@ Plug 'tpope/vim-commentary'
 "" Map \b to toggle the breakpoint on the current line
 "map \b <Action>(ToggleLineBreakpoint)
 let mapleader = " "
-set listchars=nbsp: ,tab:▸
+"set listchars=nbsp: ,tab:▸
 set relativenumber
 set nu
 
@@ -79,12 +79,12 @@ command! GitFetch  action Git.Fetch
 command! GitPull  action Git.Pull
 command! GitClean !bash cleanup.sh
 "does not work but the direct call does
-command! CopyFilePath !echo -n "%" | xclip -selection clipboard
+"command! CopyFilePath !echo -n "%" | xclip -selection clipboard
 
 nmap <TAB> :bnext<CR>
 nmap <S-TAB> :bprevious<CR>
-nmap <leader>gs  <Action>(HideAllWindows)<Action>(ActivateCommitToolWindow)
-nmap  <leader>z <Action>(HideAllWindows)zz<CR>
+nmap <leader>gs <Action>(HideAllWindows)<Action>(ActivateCommitToolWindow)
+nmap <leader>z <Action>(HideAllWindows)zz<CR>
 nmap <leader>pv <Action>(HideAllWindows)<Action>(ActivateProjectToolWindow)
 nmap - <Action>(HideAllWindows)<Action>(ActivateProjectToolWindow)
 nmap <leader>tt <Action>(ActivateTODOToolWindow)
@@ -101,3 +101,5 @@ nnoremap <leader>fp :action CopyAbsolutePath<CR>
 
 vmap an :action EditorSelectWord<CR>
 vmap in :action EditorUnSelectWord<CR>
+"with virtual space enabled in settings
+map zz :action EditorScrollToCenter<CR>
