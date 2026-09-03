@@ -3,7 +3,7 @@ fetch(){
         cd /tmp
         rm tree-sitter-cli-linux-x64.zip || true
         curl -L -o tree-sitter-cli-linux-x64.zip https://github.com/tree-sitter/tree-sitter/releases/download/v$1/tree-sitter-cli-linux-x64.zip
-        rm tree-sitter 
+        rm tree-sitter || true
         unzip tree-sitter-cli-linux-x64.zip
         install  -t $HOME/programs tree-sitter
     )
