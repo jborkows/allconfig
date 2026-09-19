@@ -49,6 +49,8 @@
       "grep *": "allow",
       "rg *": "allow",
       "ls *": "allow",
+      "tail *": "allow",
+      "head *": "allow",
       "xxd *": "allow",
       "free *": "allow",
       "uname *": "allow",
@@ -59,7 +61,11 @@
       "gradlew *": "allow",
       "java *": "allow",
       "javac *": "allow",
-      "rm -rf *": "deny"
+      "echo *": "allow",
+      "rm -rf *": "deny",
+      "cat *target/*":"allow",
+      "date *":"allow",
+      "date":"allow"
     },
     "skill": {
       "*": "allow",
