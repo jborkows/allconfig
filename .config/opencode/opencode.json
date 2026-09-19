@@ -19,6 +19,14 @@
       "*.go": "allow",
       "*.rs": "allow"
     },
+    "glob": {
+      "*": "ask",
+      "*.java": "allow",
+      "*.kt": "allow",
+      "*.ts": "allow",
+      "*.go": "allow",
+      "*.rs": "allow"
+    },
     "bash": {
       "*": "ask",
       "git": "allow",
